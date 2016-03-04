@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :rounds
   has_many :decks, through: :rounds
   validates :username, :password, presence:true
+  validates :username, uniqueness: true
   validates :username, length: {maximum: 20}
 
   include BCrypt
