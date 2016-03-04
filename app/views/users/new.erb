@@ -1,0 +1,19 @@
+<form action='/users' method='post'>
+  <h4> Username </h4><br>
+  <input type='text' name="user[username]" placeholder="Username must be 20 chars"><br>
+  <h4> Password </h4><br>
+  <input type='password' name="user[password]" placeholder='Password'><br>
+  <h4> Description</h4><br>
+  <input type='text' name="user[description]" placeholder="Username must be 20 chars"><br>
+  <input type="submit" value="Submit!">
+</form>
+
+<% if @errors %>
+<% @errors.each do |error| %>
+  <ul>
+    <li> <%= error %></li>
+  </ul>
+
+<%end%>
+<%end%>
+
