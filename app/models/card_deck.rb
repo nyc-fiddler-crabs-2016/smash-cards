@@ -1,3 +1,6 @@
 class CardDeck < ActiveRecord::Base
-  # Remember to create a migration!
+	validates :card_id, :deck_id, presence: true
+
+  belongs_to :card
+  belongs_to :deck
 end
