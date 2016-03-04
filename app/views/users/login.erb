@@ -1,1 +1,9 @@
-<form action=
+<form action='/users/login' method='post'>
+  <h4> Username </h4><br>
+  <input type='text' name="username" placeholder="Username must be 20 chars"><br>
+  <h4> Password </h4><br>
+  <input type='password' name="password" placeholder='Password'><br>
+  <input type="submit" value="Submit!">
+</form>
+
+<p><%= @error %></p>
