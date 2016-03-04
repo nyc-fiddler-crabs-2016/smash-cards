@@ -3,8 +3,8 @@ class CreateRoundTable < ActiveRecord::Migration
     create_table :rounds do |t|
       t.references :user, index: true, null: false
       t.references :deck, index: true, null: false
-      t.integer :first_try_count, null: false
-      t.integer :total_guesses, null: false
+      t.integer :first_try_count
+      t.integer :total_guesses
 
       t.timestamps null: false
     end
