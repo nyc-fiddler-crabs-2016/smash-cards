@@ -19,14 +19,15 @@
 </head>
 <body>
   <nav>
-    <a href="/decks/index">Home</a>
     <% if logged_in? %>
         <ul>
-          <li><a href="/users/<%= current_user.id %>"><%= current_user.username %></li>
-          <li><a href="/users/logout"> Logout</li>
+          <li><a href="/decks/index">Home</a></li>
+          <li><a href="/users/<%=current_user.id%>"><%=current_user.username.capitalize%>'s profile</a></li>
+          <li><a href="/users/logout">Logout</a></li>
         </ul>
      <% else %>
          <ul>
+            <li><a href="/decks/index">Home</a></li>
             <li> <a href="/users/login">Login!</a></li>
             <li> <a href="/users/new">Sign Up!</a></li>
           </ul>
