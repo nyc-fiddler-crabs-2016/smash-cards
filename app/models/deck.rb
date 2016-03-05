@@ -11,6 +11,8 @@ class Deck < ActiveRecord::Base
   end
 
   def remove_card
-    self.cards.delete(Card.find(1))
+    self.cards.delete(self.cards[0])
   end
+
+
 end

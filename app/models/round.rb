@@ -8,10 +8,6 @@ class Round < ActiveRecord::Base
   validates :first_try_count, presence: true, numericality: true
   validates :total_guesses, presence: true, numericality: true
 
-  def pick_card
-    self.cards.first
-  end
-
   def rotate_deck
     self.cards.rotate
   end
@@ -27,4 +23,10 @@ class Round < ActiveRecord::Base
   def make_guess
     self.total_guesses += 1
   end
+
+  def pick_card
+    self.cards.first
+  end
+
+
 end
