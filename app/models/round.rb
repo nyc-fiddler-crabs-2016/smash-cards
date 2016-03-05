@@ -8,12 +8,10 @@ class Round < ActiveRecord::Base
   validates :first_try_count, presence: true, numericality: true
   validates :total_guesses, presence: true, numericality: true
 
-  def rotate_deck
-    self.cards.rotate
-  end
-
   def game_over?
-    self.cards.empty?
+    all_guesses_correct = self.guesses.all? {|guess| guess.guessed_correctly == true}
+    guess_count_equals_card_count = self.guesses.count == self.deck.cards.count
+    all_guesses_correct && guess_count_equals_card_count
   end
 
   def first_guess_correct
@@ -25,18 +23,9 @@ class Round < ActiveRecord::Base
   end
 
   def pick_card
-    #if the card has not been
-    #answered or has not been answered correctly
-
-
-    # Pick the first card out of all the cards where
-    # the card guess is not guessed correctly
-
-    #w'ell need all the cards withgin the deck
-    self.cards.each do |card|
-     @x = card.guesses.find_by(guessed_correctly: true, round_id: self.id)
-     binding.pry
-     return card if @x.nil?
+    self.cards.shuffle.each do |card|
+     card_guesses = card.guesses.find_by(guessed_correctly: true, round_id: self.id)
+     return card if card_guesses.nil?
     end
   end
 

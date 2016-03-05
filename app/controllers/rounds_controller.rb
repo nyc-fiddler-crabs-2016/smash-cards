@@ -19,39 +19,37 @@ post '/rounds/:id' do
   @card = @round.pick_card
   @guess = Guess.create_with(user_input: params[:word]).find_or_create_by(card_id: @card.id, round_id: params[:id])
   @guess.user_input = params[:word]
-      if @guess.correct?(params[:word])  && @guess.first_try == false
+      if @guess.correct?  && @guess.first_try == false
+        @guess.update(guessed_correctly: true)
         @round.first_guess_correct
         @round.make_guess
-        # @round = Round.find_by(id: params[:id])
-        @deck.remove_card
-        @card = @round.pick_card
-        @guess.save
         @round.save
-        @message = "First Try"
+        @card = @round.pick_card
+        @message = "Nice!"
         if @round.game_over?
           redirect "/rounds/#{@round.id}/complete"
         else
           erb :'/rounds/show'
         end
       elsif @guess.correct?
-        @deck.remove_card
+        @guess.update(guessed_correctly: true)
         @round.make_guess
         @round.save
         @card = @round.pick_card
-        @message = "Not First Try"
+        @message = "You got it!"
         if @round.game_over?
           redirect "/rounds/#{@round.id}/complete"
         else
           erb :'/rounds/show'
         end
        else
-        @round.rotate_deck
         @round.make_guess
         @round.save
         @guess.first_try = true
         @guess.save
+        @errors = @guess.errors.full_messages
+        @message = "Good Try!"
         @card = @round.pick_card
-        @message = "Fail"
         erb :'/rounds/show'
   end
 end
