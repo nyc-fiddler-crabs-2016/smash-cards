@@ -40,6 +40,8 @@ end
 
 
 get '/users/:id' do
+  @user = User.find_by(id: params[:id])
+  @rounds = @user.rounds.last(5)
   erb :'users/show'
 end
 
