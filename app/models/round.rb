@@ -13,11 +13,11 @@ class Round < ActiveRecord::Base
   end
 
   def rotate_deck
-    self.deck.rotate
+    self.cards.rotate
   end
 
   def game_over?
-    self.deck.empty?
+    self.cards.empty?
   end
 
   def first_guess_correct
