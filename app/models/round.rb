@@ -8,12 +8,10 @@ class Round < ActiveRecord::Base
   validates :first_try_count, presence: true, numericality: true
   validates :total_guesses, presence: true, numericality: true
 
-  def rotate_deck
-    self.cards.rotate
-  end
-
   def game_over?
-    self.cards.empty?
+    all_guesses_correct = self.guesses.all? {|guess| guess.guessed_correctly == true}
+    guess_count_equals_card_count = self.guesses.count == self.deck.cards.count
+    all_guesses_correct && guess_count_equals_card_count
   end
 
   def first_guess_correct
@@ -25,7 +23,10 @@ class Round < ActiveRecord::Base
   end
 
   def pick_card
-    self.cards.first
+    self.cards.shuffle.each do |card|
+     card_guesses = card.guesses.find_by(guessed_correctly: true, round_id: self.id)
+     return card if card_guesses.nil?
+    end
   end
 
   def name
@@ -35,7 +36,5 @@ class Round < ActiveRecord::Base
   def first_try_percentage
     "#{self.first_try_count} / #{self.deck.cards.length}"
   end
-
-
 
 end
