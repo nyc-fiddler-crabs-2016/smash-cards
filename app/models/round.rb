@@ -29,4 +29,12 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def name
+    self.deck.name
+  end
+
+  def first_try_percentage
+    "#{self.first_try_count} / #{self.deck.cards.length}"
+  end
+
 end

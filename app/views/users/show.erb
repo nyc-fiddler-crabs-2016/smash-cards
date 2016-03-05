@@ -2,3 +2,18 @@
 
 <%=current_user.description%>
 
+<table>
+  <tr>
+    <th>Round Name</th>
+    <th>First Try Percentage</th>
+    <th>Total Guesses</th>
+  </tr>
+  <% @rounds.each do |round| %>
+  <tr>
+
+    <td><%= round.name %></td>
+    <td><%= round.first_try_percentage %></td>
+    <td><%= round.total_guesses%></td>
+  </tr>
+  <%end%>
+</table>
