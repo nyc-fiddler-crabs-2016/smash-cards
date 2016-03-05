@@ -25,8 +25,19 @@ class Round < ActiveRecord::Base
   end
 
   def pick_card
-    self.cards.first
-  end
+    #if the card has not been
+    #answered or has not been answered correctly
 
+
+    # Pick the first card out of all the cards where
+    # the card guess is not guessed correctly
+
+    #w'ell need all the cards withgin the deck
+    self.cards.each do |card|
+     @x = card.guesses.find_by(guessed_correctly: true, round_id: self.id)
+     binding.pry
+     return card if @x.nil?
+    end
+  end
 
 end

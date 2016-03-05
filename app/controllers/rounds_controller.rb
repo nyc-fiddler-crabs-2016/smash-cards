@@ -19,7 +19,7 @@ post '/rounds/:id' do
   @card = @round.pick_card
   @guess = Guess.create_with(user_input: params[:word]).find_or_create_by(card_id: @card.id, round_id: params[:id])
   @guess.user_input = params[:word]
-      if @guess.correct?  && @guess.first_try == false
+      if @guess.correct?(params[:word])  && @guess.first_try == false
         @round.first_guess_correct
         @round.make_guess
         # @round = Round.find_by(id: params[:id])
