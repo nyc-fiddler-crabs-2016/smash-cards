@@ -1,2 +1,7 @@
 <%=@deck.name%>
+<br>
+<% if logged_in?%>
 <a href="/rounds">Play Now!</a>
+<% else %>
+<a href="/users/new">Sign Up To Play</a>
+<%end%>
