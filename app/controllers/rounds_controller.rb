@@ -48,7 +48,7 @@ post '/rounds/:id' do
         @guess.first_try = true
         @guess.save
         @errors = @guess.errors.full_messages
-        @message = "Good Try!"
+        @message = "try this one again..."
         @card = @round.pick_card
         erb :'/rounds/show'
   end

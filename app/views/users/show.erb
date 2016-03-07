@@ -1,19 +1,20 @@
-<p> Hello, <%= current_user.username %></p>
-
-<%=current_user.description%>
-
-<table>
+<div class="show-username">
+  <li>Hello  <%= current_user.username %></li> <br>
+  <p class="user-bio">Your Bio: <br><br><%=current_user.description%></p>
+</div>
+<li class="your-stats">Your Stats: </li>
+<br>
+<table class="user-data">
   <tr>
-    <th>Round Name</th>
-    <th>First Try Percentage</th>
+    <th class="round-name-title">Round Name</th>
+    <th>First Try Ratio</th>
     <th>Total Guesses</th>
   </tr>
   <% @rounds.each do |round| %>
   <tr>
-
-    <td><%= round.name %></td>
-    <td><%= round.first_try_percentage %></td>
-    <td><%= round.total_guesses%></td>
+    <td class="round-name"><%= round.name %></td>
+    <td class="round-percent"><%= round.first_try_percentage %></td>
+    <td class="round-guesses"><%= round.total_guesses%></td>
   </tr>
   <%end%>
 </table>

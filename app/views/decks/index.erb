@@ -1,4 +1,9 @@
-<% @decks.each do |deck|%>
-<li> <a href="/decks/<%=deck.id%>"><%=deck.name%></a> </li>
-<%end%>
+<p class="decks-index-title">Choose a deck to play:</p>
 
+<div class="deck-container">
+ <!--  <% @decks.each do |deck|%> -->
+   <div class="deck">
+      <li> <a href="/decks/<%=deck.id%>"><%=deck.name%></a> </li>
+   </div>
+  <%end%>
+<!-- </div> -->
