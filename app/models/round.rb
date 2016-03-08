@@ -22,8 +22,13 @@ class Round < ActiveRecord::Base
     self.total_guesses += 1
   end
 
+
+  def shuffle_card
+    self.cards.shuffle
+  end
+
   def pick_card
-    self.cards.shuffle.each do |card|
+    self.cards.each do |card|
      card_guesses = card.guesses.find_by(guessed_correctly: true, round_id: self.id)
      return card if card_guesses.nil?
     end

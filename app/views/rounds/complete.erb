@@ -1,2 +1,7 @@
-<p>youve completeed a round of <%= @round.deck.name %>. You answered <%= @round.first_try_count %>/ <%=@round.cards.length%> on the first try. you submitted <%= @round.total_guesses%> guesses before each card was answered correctly. </p>
-
+<p class="finish-title">You finished!</p>
+<br>
+<div class="finish-paragraph">
+  <li> You've completed a round of <b> <%= @round.deck.name %>. </b> You answered <b><%= @round.first_try_count %>/ <%=@round.cards.length%></b> on the first try.</li>
+  <br>
+  <li>You submitted <b><%= @round.total_guesses%></b> guesses before each card was answered correctly.</li>
+</div>

@@ -1,7 +1,11 @@
+<div class="deck">
 <%=@deck.name%>
+</div>
 <br>
-<% if logged_in?%>
-<a href="/rounds">Play Now!</a>
-<% else %>
-<a href="/users/new">Sign Up To Play</a>
-<%end%>
+<div class="play-button">
+  <% if logged_in?%>
+    <a href="/rounds">play</a>
+  <% else %>
+    <a href="/users/new">Sign Up or Login to Play</a>
+  <%end%>
+</div>
